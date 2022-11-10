@@ -1,17 +1,42 @@
-version: "3.9"
+version: '3'
 services:
   jenkins:
-    image: "jenkinsci/blueocean"
-    ports:
-      - "8080:8080"
+    image: jenkinsci/blueocean
     volumes:
       - jenkins_home:/var/jenkins_home
-  sonar:
-    image: "sonarqube"
     ports:
-      - "9000:9000"
+      - 8080:8080
+  nexus:
+    image: sonatype/nexus3
+    volumes:
+      - /home/nexus/data/nexus-data:/nexus-data
+    ports:
+      - 8081:8081
+  sonar:
+    image: sonarqube
     volumes:
       - /home/sonarqube/data:/opt/sonarqube/data
-volumes:
+    ports:
+      - 9000:9000
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql_volume:/var/lib/mysql
+  spring_app:
+    image: tpachat
+    container_name: tpachat
+    restart: on-failure
+    ports:
+      - 8090:8089
+    depends_on:
+      - mysqldb
+      
+ volumes:
   jenkins_home:
     external: true
+  mysql_volume:
+    external: true 
