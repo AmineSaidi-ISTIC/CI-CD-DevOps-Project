@@ -27,8 +27,8 @@ services:
     volumes:
       - mysql_volume:/var/lib/mysql
   spring_app:
-    image: tpachat
-    container_name: tpachat
+    image: tp_achat
+    container_name: tp_achat
     restart: on-failure
     ports:
       - 8090:8089
