@@ -9,9 +9,29 @@ pipeline {
                     credentialsId: 'agent_devops_1';
             }
         }
-        stage('build') {
+        stage('sonar') {
             steps {
-                sh "mvn clean package";
+                sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=root";
+            }
+        }
+        stage('unit test') {
+            steps {
+                sh "mvn clean test -Ptest";
+            }
+        }
+        stage('ls before build') {
+            steps {
+                sh "ls";
+            }
+        }
+        stage('build package') {
+            steps {
+                sh "mvn clean package -Pprod";
+            }
+        }
+        stage('ls after build') {
+            steps {
+                sh "ls";
             }
         }
     }
