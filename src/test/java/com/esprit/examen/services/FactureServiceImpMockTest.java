@@ -18,35 +18,35 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 @SpringBootTest
 
-public class FactureServiceImpMockTest {
+class FactureServiceImpMockTest {
     @Mock
     FactureRepository FactureRepository;
     @InjectMocks
     FactureServiceImpl FactureService;
     @Test
-    public void testRetrieveAllFactures(){
-        Facture f = new Facture(120,2020,new Date(2022-03-20),new Date(2022-04-20),true);
+     void testRetrieveAllFactures(){
+        Facture f = new Facture(200L,120,2020,new Date(2022-03-20),new Date(2022-04-20),true,null,null,null);
         Mockito.when(FactureRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(f));
-        assertNotNull(FactureService.retrieveFacture(1L));
+        assertNotNull(FactureService.retrieveFacture(200L));
         System.out.println("retrieve done");
     }
 
     @Test
-    public void testAddFacture()
+     void testAddFacture()
     {
 
-        Facture f = new Facture(50,500,new Date(2022-01-20),new Date(2022-02-20),true);
+        Facture f = new Facture(null,50,500,new Date(2022-01-20),new Date(2022-02-20),true,null,null,null);
         FactureService.addFacture(f);
         verify(FactureRepository, times(1)).save(f);
         System.out.println("add done");
     }
 
     @Test
-    public void testGetFacture()
+     void testGetFacture()
     {
         List<Facture> Factures = new ArrayList<Facture>();
-        Facture f1 = new Facture(700,3000,new Date(2022-05-20),new Date(2022-06-20),true);
-        Facture f2 = new Facture(550,1700,new Date(2022-07-20),new Date(2022-11-20),true);
+        Facture f1 = new Facture(null,700,3000,new Date(2022-05-20),new Date(2022-06-20),true,null,null,null);
+        Facture f2 = new Facture(null,550,1700,new Date(2022-07-20),new Date(2022-11-20),true,null,null,null);
         Factures.add(f1);
         Factures.add(f2);
         when(FactureRepository.findAll()).thenReturn(Factures);
