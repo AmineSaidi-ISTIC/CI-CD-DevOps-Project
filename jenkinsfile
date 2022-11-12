@@ -33,6 +33,11 @@ pipeline {
             steps {
                 sh "ls";
             }
+          }
+         stage('Nexus') {
+            steps {
+                sh "mvn clean deploy -Pprod";
+            }
         }
     }
 }
