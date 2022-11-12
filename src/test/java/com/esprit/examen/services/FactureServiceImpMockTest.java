@@ -28,7 +28,7 @@ class FactureServiceImpMockTest {
         Facture f = new Facture(200L,120,2020,new Date(2022-03-20),new Date(2022-04-20),true,null,null,null);
         Mockito.when(FactureRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(f));
         assertNotNull(FactureService.retrieveFacture(200L));
-        System.out.println("retrieve done");
+        System.out.println("**********************-------------get list des factures done------------------******************");
     }
 
     @Test
@@ -38,7 +38,7 @@ class FactureServiceImpMockTest {
         Facture f = new Facture(null,50,500,new Date(2022-01-20),new Date(2022-02-20),true,null,null,null);
         FactureService.addFacture(f);
         verify(FactureRepository, times(1)).save(f);
-        System.out.println("add done");
+        System.out.println("**********************-------------add factures done------------------******************");
     }
 
     @Test
@@ -49,8 +49,9 @@ class FactureServiceImpMockTest {
         Facture f2 = new Facture(null,550,1700,new Date(2022-07-20),new Date(2022-11-20),true,null,null,null);
         Factures.add(f1);
         Factures.add(f2);
+        assertNotNull(Factures);
         when(FactureRepository.findAll()).thenReturn(Factures);
-        System.out.println("get list done");
+        System.out.println("**********************-------------get list des factures done------------------******************");
     }
 
 //    @Test
