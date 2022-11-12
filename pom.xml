@@ -18,12 +18,12 @@
 		<java.version>1.8</java.version>
 	</properties>
 
-	<distributionManagement>
+	<!-- <distributionManagement>
 		<repository>
 			<id>deploymentRepo</id>
 			<url>http://192.168.1.42:8081/repository/pipeline-app-registery/</url>
 		</repository>
-	</distributionManagement>
+	</distributionManagement> -->
 
 	<repositories>
 		<repository>
@@ -32,7 +32,6 @@
 		</repository>
 	</repositories>
 
-</project>
 
 	<dependencies>
 		<dependency>
