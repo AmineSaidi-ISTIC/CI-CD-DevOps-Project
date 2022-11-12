@@ -25,6 +25,15 @@
 		</repository>
 	</distributionManagement>
 
+	<repositories>
+		<repository>
+		<id>pipeline-app-registery</id>
+		<url>http://192.168.1.42:8081/repository/pipeline-app-registery/</url>
+		</repository>
+	</repositories>
+
+</project>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
