@@ -90,6 +90,15 @@ pipeline {
                 }
             }
         }
+        
+        stage('Running Docker Image From Nexus') {
+            steps {
+                
+                script{
+                        sh "docker run 192.168.1.42:8082/repository/docker-private-registery/tp_achat --name tp_achat_container_from_nexus"                 
+                }
+            }
+        }
 
 //         stage('deploy-Nexus-docker-hosted'){
 //             steps{
