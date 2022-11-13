@@ -9,32 +9,22 @@ pipeline {
                     credentialsId: 'agent_devops_1';
             }
         }
-          stage('sonar') {
+          stage('Sonar') {
               steps {
                   sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=nizar";
               }
           }
-          stage('unit test') {
+          stage('Units Tests') {
               steps {
                   sh "mvn clean test -Ptest";
               }
           }
-        stage('ls before build') {
-            steps {
-                sh "ls";
-            }
-        }
-        stage('build package') {
+        stage('Building Package') {
             steps {
                 sh "mvn clean package -Pprod";
             }
         }
-        stage('ls after build') {
-            steps {
-                sh "ls";
-            }
-          }
-         stage('deploy-jar-Nexus'){
+         stage('Artifact Deployment: Private Nexus Maven Repository'){
             steps{
                 nexusArtifactUploader artifacts: [
                     [
@@ -55,13 +45,13 @@ pipeline {
             }
          }
 
-        stage('Pull artifact from Nexus'){
+        stage('Pulling Artifact From Nexus Private Repository'){
             steps{
                 
                 sh "curl http://192.168.1.42:8081/repository/pipeline-app-registery/com/esprit/examen/tpAchatProject/1.0/tpAchatProject-1.0.jar --output tpAchatProject-1.0.jar";
             }
         }
-        stage('Build docker image') {
+        stage('Building Docker Image Using Artifact') {
             steps{
                 script{
                     dockerImage = docker.build "192.168.1.42:8082/repository/docker-private-registery/tp_achat:latest"
@@ -69,7 +59,7 @@ pipeline {
             }
         }
 
-        stage('Push docker image to Nexus') {
+        stage('Pushing Docker Image To Nexus Private Docker Repository') {
             steps {
                 
                 script{
@@ -81,7 +71,7 @@ pipeline {
             }
         }
         
-        stage('Running Docker Image From Nexus') {
+        stage('Running Docker Image From Nexus Private Docker Repository') {
             steps {
                 
                 script{
