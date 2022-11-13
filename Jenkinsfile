@@ -101,28 +101,6 @@ pipeline {
             }
         }
 
-//         stage('deploy-Nexus-docker-hosted'){
-//             steps{
-//                 nexusArtifactUploader artifacts: [
-//                     [
-//                         artifactId: 'tpAchatProject',
-//                         classifier: '',
-//                         file: 'target/tpAchatProject-1.0.jar',
-//                         type: 'jar'
-//                     ]
-//                 ],
-//                 credentialsId: 'nexus-credentials',
-//                 groupId: 'com.esprit.examen',
-//                 nexusUrl: '192.168.1.42:8081',
-//                 nexusVersion: 'nexus3',
-//                 protocol: 'http',
-//                 repository: 'pipeline-app-registery',
-//                 version: '1.0'
-//
-//             }
-          
-//         }
-
     }
 }
 
