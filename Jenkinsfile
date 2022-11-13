@@ -45,7 +45,7 @@ pipeline {
             }
          }
 
-        stage('Pulling Artifact From Nexus Private Repository'){
+        stage('Pulling Artifact To Nexus Repository'){
             steps{
                 
                 sh "curl http://192.168.1.42:8081/repository/pipeline-app-registery/com/esprit/examen/tpAchatProject/1.0/tpAchatProject-1.0.jar --output tpAchatProject-1.0.jar";
@@ -59,7 +59,7 @@ pipeline {
             }
         }
 
-        stage('Pushing Docker Image To Nexus Private Docker Repository') {
+        stage('Pushing Docker Image To Nexus Docker Repo') {
             steps {
                 
                 script{
@@ -71,7 +71,7 @@ pipeline {
             }
         }
         
-        stage('Running Docker Image From Nexus Private Docker Repository') {
+        stage('Running Docker Container From Nexus Docker Repo') {
             steps {
                 
                 script{
