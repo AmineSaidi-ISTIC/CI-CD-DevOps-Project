@@ -71,6 +71,18 @@ pipeline {
             }
         }
         
+        stage('Pulling Docker Image From Nexus Docker Repo') {
+            steps {
+                
+                script{
+                    withDockerRegistry([credentialsId: 'nexus-credentials', url: 'http://192.168.1.42:8082/repository/docker-private-registery/']) {
+                        sh "docker pull 192.168.1.42:8082/repository/docker-private-registery/tp_achat:latest"
+                      
+                    }
+                }
+            }
+        }
+        
         stage('Running Docker Container From Nexus Docker Repo') {
             steps {
                 
