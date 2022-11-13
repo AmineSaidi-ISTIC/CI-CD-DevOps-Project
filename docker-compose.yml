@@ -2,12 +2,14 @@ version: '3'
 services:
   jenkins:
     image: jenkinsci/blueocean
+    restart: always
     volumes:
       - jenkins_home:/var/jenkins_home
     ports:
       - 8080:8080
   nexus:
     image: sonatype/nexus3
+    restart: always
     volumes:
       - /home/nexus/nexus-data:/nexus-data
     ports:
@@ -16,11 +18,13 @@ services:
       - 8083:8083
   sonar:
     image: sonarqube
+    restart: always
     volumes:
       - /home/sonarqube/data:/opt/sonarqube/data
     ports:
       - 9000:9000
   mysqldb:
+    restart: always
     container_name: mysqldb
     image: mysql:8
     restart: unless-stopped
