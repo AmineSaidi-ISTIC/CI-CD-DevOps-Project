@@ -1,21 +1,22 @@
 version: '3'
-  services:
-    mysqldb:
-      container_name: mysqldb
-      image: mysql:8
-      restart: unless-stopped
-      environment:
-        MYSQL_ROOT_PASSWORD: root
-      volumes:
-        - mysql_volume:/var/lib/mysql
-    spring_app:
-      image: 192.168.1.42:8082/repository/docker-private-registery/tp_achat
-      container_name: tp_achat_deployed_nexus
-      restart: on-failure
-      ports:
-        - 8090:8089
-      depends_on:
-        - mysqldb
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - mysql_volume:/var/lib/mysql
+  spring_app:
+    image: 192.168.1.42:8082/repository/docker-private-registery/tp_achat
+    container_name: tp_achat_deployed_nexus
+    restart: on-failure
+    ports:
+      - 8089:8089
+    depends_on:
+      - mysqldb
+      
 volumes:
   mysql_volume:
     external: true
