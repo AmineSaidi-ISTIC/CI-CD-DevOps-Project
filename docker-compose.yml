@@ -16,5 +16,6 @@ services:
       - 8090:8089
     depends_on:
       - mysqldb
-mysql_volume:
- external: true
+ volumes:
+  mysql_volume:
+    external: true
