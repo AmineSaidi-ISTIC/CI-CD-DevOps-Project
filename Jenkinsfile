@@ -9,16 +9,16 @@ pipeline {
                     credentialsId: 'agent_devops_1';
             }
         }
-//          stage('sonar') {
-//              steps {
-//                  sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=nizar";
-//              }
-//          }
-//          stage('unit test') {
-//              steps {
-//                  sh "mvn clean test -Ptest";
-//              }
-//          }
+          stage('sonar') {
+              steps {
+                  sh "mvn sonar:sonar -Dsonar.login=admin -Dsonar.password=nizar";
+              }
+          }
+          stage('unit test') {
+              steps {
+                  sh "mvn clean test -Ptest";
+              }
+          }
         stage('ls before build') {
             steps {
                 sh "ls";
@@ -54,17 +54,6 @@ pipeline {
                 
             }
          }
-        //  stage('Pull from nexus') {
-        //     steps {
-        //         sh "mvn clean install -Pprod";
-        //     }
-        //   }    
-
-        // stage('Build image') {
-        //     steps {
-        //         sh "docker build -t tpachat ."
-        //     }
-        // }
 
         stage('Pull artifact from Nexus'){
             steps{
