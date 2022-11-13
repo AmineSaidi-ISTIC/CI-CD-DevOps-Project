@@ -66,7 +66,7 @@ pipeline {
         //     }
         // }
 
-        tage('Pull artifact from Nexus'){
+        stage('Pull artifact from Nexus'){
             steps{
                 
                 sh "curl http://192.168.1.42:8081/repository/pipeline-app-registery/com/esprit/examen/tpAchatProject/1.0/tpAchatProject-1.0.jar --output tpAchatProject-1.0.jar";
