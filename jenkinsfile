@@ -34,7 +34,7 @@ pipeline {
                 sh "ls";
             }
           }
-         stage('deploy-Nexus'){
+         stage('deploy-jar-Nexus'){
             steps{
                 nexusArtifactUploader artifacts: [
                     [
@@ -54,16 +54,40 @@ pipeline {
                 
             }
          }
+        //  stage('Pull from nexus') {
+        //     steps {
+        //         sh "mvn clean install -Pprod";
+        //     }
+        //   }    
 
-         stage('Pull from nexus') {
-            steps {
-                sh "mvn clean install -Pprod";
+        // stage('Build image') {
+        //     steps {
+        //         sh "docker build -t tpachat ."
+        //     }
+        // }
+
+        tage('Pull artifact from Nexus'){
+            steps{
+                
+                sh "curl http://192.168.1.42:8081/repository/pipeline-app-registery/com/esprit/examen/tpAchatProject/1.0/tpAchatProject-1.0.jar --output tpAchatProject-1.0.jar";
             }
-          }    
+        }
+        stage('Build docker image') {
+            steps{
+                script{
+                    dockerImage = docker.build "192.168.1.42:8082/repository/docker-private-registery/tp_achat:latest"
+                }
+            }
+        }
 
-        stage('Build image') {
+        stage('Push docker image to Nexus') {
             steps {
-                sh "docker build -t tpachat ."
+                
+                script{
+                    withDockerRegistry([credentialsId: 'nexus-credentials', url: 'http://192.168.1.42:8082/repository/docker-private-registery/']) {
+                        sh "docker push 192.168.1.42:8082/repository/docker-private-registery/tp_achat:latest"
+                    }
+                }
             }
         }
 
@@ -91,3 +115,4 @@ pipeline {
 
     }
 }
+
