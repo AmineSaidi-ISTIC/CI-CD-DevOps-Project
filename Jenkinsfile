@@ -86,6 +86,7 @@ pipeline {
                 script{
                     withDockerRegistry([credentialsId: 'nexus-credentials', url: 'http://192.168.1.42:8082/repository/docker-private-registery/']) {
                         sh "docker push 192.168.1.42:8082/repository/docker-private-registery/tp_achat:latest"
+                      
                     }
                 }
             }
