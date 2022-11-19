@@ -1,16 +1,23 @@
-# Docker_TP_Achat
-trying the webhooks  number uno
-trying the webhooks  number doué
-trying the webhooks  number tresss
-daily test webhooks ngrok pipeline 
-2nd test
-3rd
-4th
+# CI/CD DevOps Project
+This project is composed of several steps:
+✅ Developing our application using Springboot.
 
-recording test23
+✅ Managing SpringBoot application using Maven.
 
-validation test 333
+✅ Triggering pipeline build event with GitHub.
 
-validation
+✅ Managing and keeping track of my source code and controlling versions using Git with GitHub hosting service.
 
-validation.
+✅ Creating and running unit tests with Mockito.
+
+✅ Checking the quality of source code using SonarQube.
+
+✅ Hosting artifacts using Nexus3.
+
+✅ Configuring DockerCompose and Dockerfile to set up and build a working environment. SpringBoot Mysql.
+
+✅ Continuous integration and automation using Jenkins Pipeline.
+
+✅ Continuous delivery by pushing generated Docker to Nexus3.
+
+✅ Data tracking and visualization with prometheus and Grafana
